@@ -1,0 +1,73 @@
+.layout-padding {
+  padding: 90px 0;
+}
+
+.about {
+  display: block;
+  border: 2px red solid;
+}
+
+.heading-container {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.about .test-container {
+  display: flex;
+  flex-direction: row;
+  /* -webkit-box-pack: center;*/
+  justify-content: center;
+  padding: 45px 60px;
+  flex-wrap: wrap;
+}
+
+.about .test-container .box {
+  text-align: center;
+  margin: 10px;
+  min-width: 200px;
+  width: 325px;
+  background-color: #f8f8f8;
+}
+
+.box:hover {
+  background-color: #ff894c !important;
+}
+
+.about .test-container .box .img-box {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 200px;
+  /* background-color: #f6f5f7; */
+  /* opacity: 0.5; */
+}
+
+.about .test-container .box .img-box img {
+  width: 150px;
+  height: auto;
+}
+
+.about .test-container .box .detail-box {
+  margin-top: 15px;
+}
+
+.about .test-container .box .detail-box p {
+  color: black;
+}
+
+img:not(:root) {
+  overflow-clip-margin: content-box;
+  overflow: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

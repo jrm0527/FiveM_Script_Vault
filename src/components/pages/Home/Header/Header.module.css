@@ -1,0 +1,58 @@
+header {
+  width: 100vw;
+  height: 20%;
+  margin-top: 0;
+}
+
+.navigationWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #222;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  color: white;
+  overflow: hidden;
+}
+.navigationWrapper .logoWrapper {
+  display: flex;
+}
+.navigationWrapper .logoWrapper .stylish {
+  font-weight: bold;
+  font-size: 45px;
+}
+.navigationWrapper .logoWrapper .logo {
+  padding-left: 4px;
+  color: #ea4f4c;
+  font-size: 25px;
+}
+.navigationWrapper .navigation {
+  display: flex;
+  list-style-type: none;
+  text-transform: uppercase;
+}
+.navigationWrapper .navigation li {
+  opacity: 1;
+  list-style-type: none;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+.navigationWrapper .navigation .parent {
+  padding: 0 10px;
+  cursor: pointer;
+}
+.navigationWrapper .navigation .parent .link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  color: white;
+  padding-left: 55px;
+  font-size: 30px;
+}
+.navigationWrapper .navigation .parent .link:hover {
+  color: #ea4f4c;
+}
