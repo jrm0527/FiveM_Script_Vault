@@ -1,0 +1,29 @@
+###
+GET http://localhost:8000/api/scripts
+
+###
+GET http://localhost:8000/api/scripts/1
+
+### delete a script
+DELETE http://localhost:8000/api/scripts/1
+
+### create a script
+POST http://localhost:8000/api/scripts/
+Content-Type: application/json
+
+{
+    "name": "Test-Script",
+    "download_link": "Test",
+    "description": "Test"
+}
+
+### update a script
+PUT http://localhost:8000/api/scripts/1
+Content-Type: application/json
+
+{
+    "name": "Test-Script",
+    "download_link": "Test",
+    "description": "Test"
+}
+
