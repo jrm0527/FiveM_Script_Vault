@@ -13,8 +13,6 @@
   font-size: 35px;
   display: flex;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   text-align: center;
   color: #dc2f2f;
@@ -24,7 +22,6 @@
 .script-section .script-container {
   display: flex;
   flex-direction: row;
-  /* -webkit-box-pack: center;*/
   justify-content: center;
   padding: 45px 60px;
   flex-wrap: wrap;
@@ -41,14 +38,12 @@
 }
 
 .box:hover {
-  background-color: #ff894c !important;
+  background-color: #dc2f2f !important;
 }
 
 .script-section .script-container .box .img-box {
   display: flex;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   height: 200px;
   /* background-color: #f6f5f7; */
@@ -66,15 +61,4 @@
 
 .script-section .script-container .box .detail-box p {
   color: black;
-}
-
-img:not(:root) {
-  overflow-clip-margin: content-box;
-  overflow: hidden;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
