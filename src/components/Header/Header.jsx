@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
+import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -11,25 +12,25 @@ const Header = () => {
         </div>
         <ul className={styles.navigation}>
           <li className={styles.parent}>
-            <a className={styles.link} href="#">
+            <Link className={styles.link} to="/">
               Home
-            </a>
+            </Link>
           </li>
           <li className={styles.parent}>
-            <a className={styles.link} href="#">
+            <Link className={styles.link} to="/scripts">
               Scripts
-            </a>
+            </Link>
           </li>
-          <li className={styles.parent} id="clients">
-            <a className={styles.link} href="#">
+          <li className={styles.parent}>
+            <Link className={styles.link} to="/admin">
               Admin
-            </a>
+            </Link>
           </li>
-          <li className={styles.parent} id="services">
-            <a className={styles.link} href="#about">
+          {/* <li className={styles.parent}>
+            <Link className={styles.link} to="/about">
               About
-            </a>
-          </li>
+            </Link>
+          </li> */}
         </ul>
       </nav>
     </header>

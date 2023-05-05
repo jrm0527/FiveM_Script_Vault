@@ -23,7 +23,6 @@ const port = process.env.PORT || 8000;
 
 app.get("/api/scripts", async (req, res, next) => {
   try {
-    console.log(process.env.DATABASE_URL);
     const pool = new Pool({ connectionString: process.env.DATABASE_URL });
     const { rows } = await pool.query("SELECT * FROM script ORDER BY id ASC");
     res.send(rows);

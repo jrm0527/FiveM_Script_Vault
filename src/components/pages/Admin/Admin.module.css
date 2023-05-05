@@ -1,0 +1,4 @@
+.admin-box {
+  display: flex;
+  flex-direction: row;
+}
