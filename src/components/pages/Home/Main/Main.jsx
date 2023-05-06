@@ -1,51 +1,40 @@
 import React, { useRef, useEffect } from "react";
-import style from "./Main.module.css";
+import styles from "./Main.module.css";
 import Bank from "../../../../assets/bank.svg";
+import ScriptBox from "../../Scripts/ScriptBox/ScriptBox.jsx";
 
-const Main = () => {
+const Main = ({ scripts }) => {
   return (
-    <section className={(style["layout-padding"], style["script-section"])}>
-      <div className={style["heading-container"]}>
+    <section className={(styles["layout-padding"], styles["script-section"])}>
+      <div className={styles["heading-container"]}>
         <h1>Explore the scripts!</h1>
       </div>
-      <div className={style["script-container"]}>
-        <div className={style.box}>
-          <div className={style["img-box"]}>
+      <div className={styles["script-container"]}>
+        <div className={styles.box}>
+          <div className={styles["img-box"]}>
             <img src={Bank} alt="Bank SVG" />
           </div>
-          <div className={style["detail-box"]}>
-            <h3>QB-BankRobbery</h3>
-            <p>
-              Want to add progression to your crims? This bank robbery script
-              forces crims to follow a progression chain in order to have a
-              chance to rob the ultimate bank!
-            </p>
+          <div className={styles["detail-box"]}>
+            <h3>{scripts[0].name}</h3>
+            <p>{scripts[0].description}</p>
           </div>
         </div>
-        <div className={style.box}>
-          <div className={style["img-box"]}>
+        <div className={styles.box}>
+          <div className={styles["img-box"]}>
             <img src={Bank} alt="Bank SVG" />
           </div>
-          <div className={style["detail-box"]}>
-            <h3>QB-BankRobbery</h3>
-            <p>
-              Want to add progression to your crims? This bank robbery script
-              forces crims to follow a progression chain in order to have a
-              chance to rob the ultimate bank!
-            </p>
+          <div className={styles["detail-box"]}>
+            <h3>{scripts[1].name}</h3>
+            <p>{scripts[1].description}</p>
           </div>
         </div>
-        <div className={style.box}>
-          <div className={style["img-box"]}>
+        <div className={styles.box}>
+          <div className={styles["img-box"]}>
             <img src={Bank} alt="Bank SVG" />
           </div>
-          <div className={style["detail-box"]}>
-            <h3>QB-BankRobbery</h3>
-            <p>
-              Want to add progression to your crims? This bank robbery script
-              forces crims to follow a progression chain in order to have a
-              chance to rob the ultimate bank!
-            </p>
+          <div className={styles["detail-box"]}>
+            <h3>{scripts[2].name}</h3>
+            <p>{scripts[2].description}</p>
           </div>
         </div>
       </div>

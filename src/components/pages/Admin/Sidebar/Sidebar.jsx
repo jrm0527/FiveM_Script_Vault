@@ -8,13 +8,16 @@ const Sidebar = ({ currentScript, setCurrentScript }) => {
   const previousScript = () => {
     setCurrentScript(currentScript - 1);
   };
+  const updateScript = () => {};
 
   return (
     <div className="sidebar">
       <button className={styles["menu-buttons"]}>Add Script</button>
       <br />
       <br />
-      <button className={styles["menu-buttons"]}>Update Script</button>
+      <button onClick={updateScript} className={styles["menu-buttons"]}>
+        Update Script
+      </button>
       <br />
       <br />
       <button className={styles["menu-buttons"]}>Delete Script</button>

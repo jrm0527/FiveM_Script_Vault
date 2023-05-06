@@ -22,8 +22,17 @@ PUT http://localhost:8000/api/scripts/1
 Content-Type: application/json
 
 {
-    "name": "Test-Script",
-    "download_link": "Test",
-    "description": "Test"
+    "name": "geez-bank",
+    "download_link": "https://www.google.com",
+    "description": "Want to add progression to your crims? This bank robbery script will allow crims to follow a progression chain in order to have a chance to rob the ultimate bank!"
 }
 
+### create a user
+POST http://localhost:8000/api/register/
+Content-Type: application/json
+
+{
+    "name": "admin",
+    "email": "admin@admin.com",
+    "password": "admin"
+}

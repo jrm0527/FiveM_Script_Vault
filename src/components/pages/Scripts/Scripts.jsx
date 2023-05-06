@@ -3,12 +3,12 @@ import ScriptBox from "./ScriptBox/ScriptBox.jsx";
 import styles from "./Scripts.module.css";
 
 const Scripts = ({ scripts }) => {
+  console.log(scripts);
   return (
-    <div className={styles["admin-box"]}>
+    <div className={styles["script-box"]}>
       {scripts.map((script) => (
         <ScriptBox key={script.id} script={script} />
       ))}
-      ;
     </div>
   );
 };

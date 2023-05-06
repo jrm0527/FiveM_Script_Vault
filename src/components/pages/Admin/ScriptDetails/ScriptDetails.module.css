@@ -1,3 +1,16 @@
+.admin-box {
+  /* margin-top: 25px; */
+  margin: auto;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  width: 1000px;
+  height: 700px;
+  /* border: red 2px solid; */
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+}
+
 .script-labels {
   text-align: right;
   color: #363636;
@@ -23,4 +36,52 @@
 #crop-table {
   padding-top: 3%;
   align-self: center;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1%;
+  justify-content: space-evenly;
+  width: 30%;
+  height: 100%;
+  /* border: green 2px solid; */
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+}
+
+.menu-buttons {
+  height: 50px;
+  width: 200px;
+  background-color: #363636;
+  border-radius: 15px;
+  font-size: 18px;
+  box-shadow: 2px 6px 6px 1px black;
+  color: white;
+}
+
+/* .sidebar {
+  float: left;
+  padding-top: 2%;
+  padding-bottom: 22%;
+  text-align: center;
+  width: 20%;
+  height: 100%;
+  overflow: hidden;
+} */
+
+.sidebar-buttons {
+  height: 50px;
+  width: 100%;
+}
+
+.input-description {
+  height: 200px;
+  color: rgb(106, 28, 0);
+  width: 80%;
+  font-size: 25px;
+  border-radius: 5px;
+  background-color: #b99c71;
+  padding-left: 5px;
+  text-orientation: sideways;
 }

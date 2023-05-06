@@ -17,6 +17,11 @@ const Header = () => {
             </Link>
           </li>
           <li className={styles.parent}>
+            <Link className={styles.link} to="/login">
+              Login
+            </Link>
+          </li>
+          <li className={styles.parent}>
             <Link className={styles.link} to="/scripts">
               Scripts
             </Link>

@@ -4,11 +4,11 @@ import Main from "./Main/Main.jsx";
 import About from "./About/About.jsx";
 import Highlights from "./Highlights/Highlights.jsx";
 
-const Home = () => (
+const Home = ({ scripts }) => (
   <div>
     {/* <Header /> */}
     <About />
-    <Main />
+    <Main scripts={scripts} />
     <Highlights />
   </div>
 );
