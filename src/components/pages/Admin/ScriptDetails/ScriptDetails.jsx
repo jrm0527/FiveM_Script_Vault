@@ -2,24 +2,23 @@ import React, { useState, useEffect } from "react";
 import styles from "./ScriptDetails.module.css";
 import Confirmation from "../../../Confirmation/Confirmation.jsx";
 
-const ScriptDetails = ({
-  currentScript,
-  scripts,
-  setCurrentScript,
-  setScriptUpdate,
-  scriptUpdate,
-}) => {
+const ScriptDetails = ({ scripts, setScriptUpdate, scriptUpdate }) => {
   const [scriptName, setScriptName] = useState("");
   const [scriptDownload, setScriptDownload] = useState("");
+  const [scriptImage, setScriptImage] = useState("");
+  const [scriptSynopsis, setScriptSynopsis] = useState("");
   const [scriptDescription, setScriptDescription] = useState("");
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showDeleted, setShowDeleted] = useState(false);
   const [showAdded, setShowAdded] = useState(false);
   const [showUpdated, setShowUpdated] = useState(false);
+  const [currentScript, setCurrentScript] = useState(0);
 
   useEffect(() => {
     setScriptName(scripts[currentScript].name);
     setScriptDownload(scripts[currentScript].download_link);
+    setScriptImage(scripts[currentScript].image);
+    setScriptSynopsis(scripts[currentScript].synopsis);
     setScriptDescription(scripts[currentScript].description);
   }, [currentScript]);
 
@@ -38,6 +37,8 @@ const ScriptDetails = ({
     const newScript = {
       name: scriptName,
       download_link: scriptDownload,
+      image: scriptImage,
+      synopsis: scriptSynopsis,
       description: scriptDescription,
     };
 
@@ -61,6 +62,8 @@ const ScriptDetails = ({
     const updatedScript = {
       name: scriptName,
       download_link: scriptDownload,
+      image: scriptImage,
+      synopsis: scriptSynopsis,
       description: scriptDescription,
     };
 
@@ -107,6 +110,8 @@ const ScriptDetails = ({
   const clearScript = () => {
     setScriptName("");
     setScriptDownload("");
+    setScriptImage("");
+    setScriptSynopsis("");
     setScriptDescription("");
   };
 
@@ -176,10 +181,8 @@ const ScriptDetails = ({
       <table className={styles["table-scripts"]}>
         <tbody className={styles["text-center"]}>
           <tr>
-            <td>
-              <label className={styles["script-labels"]} htmlFor="scriptName">
-                Script Name:
-              </label>
+            <td className={styles.labels}>
+              <label htmlFor="scriptName">Script Name:</label>
             </td>
             <td>
               <input
@@ -192,13 +195,8 @@ const ScriptDetails = ({
             </td>
           </tr>
           <tr>
-            <td>
-              <label
-                className={styles["script-labels"]}
-                htmlFor="download_link"
-              >
-                Download Link:
-              </label>
+            <td className={styles.labels}>
+              <label htmlFor="download_link">Download Link:</label>
             </td>
             <td>
               <input
@@ -211,10 +209,37 @@ const ScriptDetails = ({
             </td>
           </tr>
           <tr>
+            <td className={styles.labels}>
+              <label htmlFor="image">Image:</label>
+            </td>
             <td>
-              <label className={styles["script-labels"]} htmlFor="description">
-                Description:
-              </label>
+              <input
+                type="text"
+                className={styles["input-text"]}
+                id="image"
+                onChange={(e) => setScriptImage(e.target.value)}
+                value={scriptImage}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.labels}>
+              <label chtmlFor="synopsis">Synopsis:</label>
+            </td>
+            <td>
+              <textarea
+                rows="3"
+                cols="60"
+                className={styles["input-synopsis"]}
+                id="synopsis"
+                onChange={(e) => setScriptSynopsis(e.target.value)}
+                value={scriptSynopsis}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td className={styles.labels}>
+              <label htmlFor="description">Description:</label>
             </td>
             <td>
               <textarea

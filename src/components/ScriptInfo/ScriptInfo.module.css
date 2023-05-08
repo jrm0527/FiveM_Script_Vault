@@ -1,42 +1,8 @@
 @import url("//fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
 
-h2 {
-  margin: 0;
-}
-
-button {
-  background-color: transparent;
-  background-image: none;
-}
-
-*,
-::before,
-::after {
-  box-sizing: border-box; /* 1 */
-  border-width: 0; /* 2 */
-  border-style: solid; /* 2 */
-  border-color: #e5e7eb; /* 2 */
-}
-
-/*
- * Ensure horizontal rules are visible by default
- */
-
-hr {
-  border-top-width: 1px;
-}
-
-button {
-  cursor: pointer;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-h2 {
-  font-size: inherit;
-  font-weight: inherit;
+body {
+  background-color: #eee;
+  font-family: Poppins, sans-serif;
 }
 
 .overlay {
@@ -51,86 +17,98 @@ h2 {
   z-index: 10;
 }
 
-.dialog {
+.script {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 0.75rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2.5rem;
   max-width: 100%;
-  width: 24rem;
+  width: 35rem;
+  max-height: 100vh;
+  height: 40rem;
+  align-items: center;
 }
 
-.dialog_content {
+.script_content {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.dialog_title {
+.script_title {
+  padding-top: 25px;
   font-weight: 500;
-  font-size: 1.125rem;
+  font-size: 1.725rem;
   line-height: 1.75rem;
   margin-bottom: 0.5rem;
   color: rgba(17, 24, 39, 1);
 }
 
-.dialog_description {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+.img-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 200px;
+  /* background-color: #f6f5f7; */
+  /* opacity: 0.5; */
+}
+
+.img-box img {
+  width: 150px;
+  height: auto;
+}
+
+.script_description {
+  font-size: 1.525rem;
+  line-height: 1.55rem;
   margin-bottom: 1rem;
+  padding-left: 5px;
+  padding-right: 5px;
   color: rgba(107, 114, 128, 1);
 }
 
-.dialog_footer {
-  display: flex;
-  justify-content: flex-end;
+.script_footer {
+  /* display: flex; */
+  /* justify-content: flex-end; */
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.dialog_cancel {
+.script_download {
+  background-color: rgb(201, 241, 215);
   border-radius: 0.75rem;
   font-weight: 500;
   margin-right: 1rem;
-}
-
-.dialog_cancel {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  color: rgb(30, 132, 70);
 }
 
-.dialog_cancel {
-  color: rgba(17, 24, 39, 1);
+.script_download:hover {
+  background-color: rgb(144, 223, 154);
+  color: rgb(14, 87, 40);
 }
 
-.dialog_cancel:hover {
-  background-color: rgba(252, 165, 165, 1);
-  color: rgba(55, 65, 81, 1);
-}
-
-.dialog_confirm {
+.script_cancel {
   background-color: rgba(254, 226, 226, 1);
   border-radius: 0.75rem;
   font-weight: 500;
   margin-right: 1rem;
-}
-
-.dialog_confirm {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  color: rgba(153, 27, 27, 1);
 }
 
-.dialog_confirm {
-  color: rgba(220, 38, 38, 1);
-}
-
-.dialog_confirm:hover {
+.script_cancel:hover {
   background-color: rgba(252, 165, 165, 1);
   color: rgba(153, 27, 27, 1);
 }

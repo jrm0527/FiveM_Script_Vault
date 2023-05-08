@@ -1,29 +1,28 @@
 .admin-box {
-  /* margin-top: 25px; */
   margin: auto;
   margin-top: 25px;
   display: flex;
   flex-direction: row;
-  width: 1000px;
-  height: 700px;
-  /* border: red 2px solid; */
+  width: 1100px;
+  height: 800px;
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 15px;
 }
 
-.script-labels {
+.labels {
   text-align: right;
-  color: #363636;
-  width: 99%;
+  padding-right: 15px;
+  width: 40%;
+  color: white;
   font-size: 38px;
 }
 
 .input-text {
-  color: rgb(106, 28, 0);
+  color: white;
   width: 80%;
   font-size: 38px;
   border-radius: 5px;
-  background-color: #b99c71;
+  background-color: #292825;
   padding-left: 5px;
 }
 
@@ -31,11 +30,6 @@
   width: 100%;
   padding-top: 5%;
   margin: 0 auto;
-}
-
-#crop-table {
-  padding-top: 3%;
-  align-self: center;
 }
 
 .sidebar {
@@ -60,28 +54,24 @@
   color: white;
 }
 
-/* .sidebar {
-  float: left;
-  padding-top: 2%;
-  padding-bottom: 22%;
-  text-align: center;
-  width: 20%;
-  height: 100%;
-  overflow: hidden;
-} */
-
-.sidebar-buttons {
-  height: 50px;
-  width: 100%;
-}
-
 .input-description {
   height: 200px;
-  color: rgb(106, 28, 0);
+  color: white;
   width: 80%;
   font-size: 25px;
   border-radius: 5px;
-  background-color: #b99c71;
+  background-color: #292825;
+  padding-left: 5px;
+  text-orientation: sideways;
+}
+
+.input-synopsis {
+  height: 150px;
+  color: white;
+  width: 80%;
+  font-size: 25px;
+  border-radius: 5px;
+  background-color: #292825;
   padding-left: 5px;
   text-orientation: sideways;
 }

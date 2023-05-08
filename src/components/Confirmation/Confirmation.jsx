@@ -18,18 +18,18 @@ const Confirmation = ({
       <>
         <div className={styles.overlay}>
           <div className={styles.dialog}>
-            <div className={styles["dialog__content"]}>
-              <h2 className={styles["dialog__title"]}>{title}</h2>
-              <p className={styles["dialog__description"]}>{statement}</p>
+            <div className={styles["dialog_content"]}>
+              <h2 className={styles["dialog_title"]}>{title}</h2>
+              <p className={styles["dialog_description"]}>{statement}</p>
             </div>
 
             <hr />
 
-            <div className={styles["dialog__footer"]}>
-              <button onClick={cancel} className={styles["dialog__cancel"]}>
+            <div className={styles["dialog_footer"]}>
+              <button onClick={cancel} className={styles["dialog_cancel"]}>
                 {cancelButton}
               </button>
-              <button onClick={confirm} className={styles["dialog__confirm"]}>
+              <button onClick={confirm} className={styles["dialog_confirm"]}>
                 {confirmButton}
               </button>
             </div>
@@ -42,15 +42,15 @@ const Confirmation = ({
       <>
         <div className={styles.overlay}>
           <div className={styles.dialog}>
-            <div className={styles["dialog__content"]}>
-              <h2 className={styles["dialog__title"]}>{title}</h2>
-              <p className={styles["dialog__description"]}>{statement}</p>
+            <div className={styles["dialog_content"]}>
+              <h2 className={styles["dialog_title"]}>{title}</h2>
+              <p className={styles["dialog_description"]}>{statement}</p>
             </div>
 
             <hr />
 
-            <div className={styles["dialog__footer"]}>
-              <button onClick={confirm} className={styles["dialog__confirm"]}>
+            <div className={styles["dialog_footer"]}>
+              <button onClick={confirm} className={styles["dialog_confirm"]}>
                 {confirmButton}
               </button>
             </div>

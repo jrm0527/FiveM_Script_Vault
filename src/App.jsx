@@ -10,7 +10,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   const [scripts, setScripts] = useState([]);
-  const [currentScript, setCurrentScript] = useState(0);
   const [scriptUpdate, setScriptUpdate] = useState(0);
 
   useEffect(() => {
@@ -30,8 +29,6 @@ const App = () => {
   }, [scriptUpdate]);
 
   const adminProps = {
-    setCurrentScript,
-    currentScript,
     scripts,
     setScriptUpdate,
     scriptUpdate,
@@ -52,7 +49,6 @@ const App = () => {
           {/* <Route path="/about" element={<About />} /> */}
         </Routes>
       </BrowserRouter>
-      // <Home />
     );
   }
 };

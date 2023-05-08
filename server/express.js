@@ -80,13 +80,15 @@ app.get("/api/scripts/:scriptId", async (req, res, next) => {
 
 app.post("/api/scripts", async (req, res, next) => {
   let scriptName = req.body.name;
+  let image = req.body.image;
+  let synopsis = req.body.synopsis;
   let downloadLink = req.body.download_link;
   let description = req.body.description;
   console.log(scriptName);
 
   const query = {
-    text: "INSERT INTO script (name, download_link, description) VALUES ($1, $2, $3) RETURNING *",
-    values: [scriptName, downloadLink, description],
+    text: "INSERT INTO script (name, download_link, image, synopsis, description) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    values: [scriptName, downloadLink, image, synopsis, description],
   };
 
   try {
@@ -108,11 +110,13 @@ app.put("/api/scripts/:scriptId", async (req, res, next) => {
   let scriptId = req.params.scriptId;
   let scriptName = req.body.name;
   let downloadLink = req.body.download_link;
+  let image = req.body.image;
+  let synopsis = req.body.synopsis;
   let description = req.body.description;
 
   const query = {
-    text: `UPDATE script SET (name, download_link, description) = ($1, $2, $3) WHERE id = ${scriptId} RETURNING *`,
-    values: [scriptName, downloadLink, description],
+    text: `UPDATE script SET (name, download_link, image, synopsis, description) = ($1, $2, $3, $4, $5) WHERE id = ${scriptId} RETURNING *`,
+    values: [scriptName, downloadLink, image, synopsis, description],
   };
 
   console.log(query);
