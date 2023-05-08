@@ -77,6 +77,8 @@ body {
   /* justify-content: flex-end; */
   padding-top: 1rem;
   padding-bottom: 1rem;
+  width: 90%;
+  text-align: center;
 }
 
 .script_download {
