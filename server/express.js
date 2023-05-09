@@ -11,35 +11,6 @@ const { Pool } = pg;
 import cors from "cors";
 app.use(cors());
 
-import bcrypt from "bcrypt";
-
-import flash from "express-flash";
-app.use(flash());
-import session from "express-session";
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-
-import passport from "passport";
-app.use(passport.initialize());
-app.use(passport.session());
-import initializePassport from "./passport-config.js";
-initializePassport(passport, async (email) => {
-  console.log("initialize", email);
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-  const query = {
-    text: "SELECT * FROM account WHERE email = $1",
-    values: [email],
-  };
-  const { rows } = await pool.query(query);
-  console.log(rows[0]);
-  return rows[0];
-});
-
 // Use this if you want to configure specific parameters with CORS
 // app.use(
 //   cors({
@@ -149,43 +120,6 @@ app.delete("/api/scripts/:scriptId", async function (req, res, next) {
     pool.end();
   } catch (error) {
     next({ status: 400, message: error.message });
-  }
-});
-
-app.post("/api/login", function (req, res, next) {
-  passport.authenticate("local", {
-    succeessRedirect: res.send(true),
-    failureRedirect: res.send(false),
-    failureFlash: true,
-  });
-});
-
-app.post("/api/register", async function (req, res, next) {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const id = Date.now();
-    const name = req.body.name;
-    const email = req.body.email;
-    const role = "user";
-    console.log(id);
-
-    const query = {
-      text: "INSERT INTO account (id, name, email, password, role) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-      values: [id, name, email, hashedPassword, role],
-    };
-    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-    const { rows } = await pool.query(query);
-    if (rows.length === 0) {
-      next({ status: 400, message: "Bad Request" });
-    } else {
-      res.send(rows);
-    }
-    pool.end();
-    //redirect to homepage
-  } catch (error) {
-    // alert(error.message);
-    next({ status: 400, message: error.message });
-    //redirect to homepage
   }
 });
 
