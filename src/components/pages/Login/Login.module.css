@@ -40,7 +40,15 @@ button {
 }
 
 button {
+  color: white;
+  background-color: grey;
   padding: 0.5rem;
+  width: 50%;
+  align-self: center;
+}
+
+button:hover {
+  background-color: green;
 }
 
 .errmsg {
@@ -52,7 +60,16 @@ button {
 }
 
 .line {
+  font-size: 24px;
   display: inline-block;
+}
+
+.link {
+  color: white;
+}
+
+.link:hover {
+  color: yellow;
 }
 
 .offscreen {

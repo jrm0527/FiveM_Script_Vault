@@ -133,18 +133,21 @@ app.post("/api/login", async function (req, res, next) {
     let userInfo = {};
     for (let i = 0; i < rows.length; i++) {
       if (rows[i].email === email) {
-        console.log("password found");
         userInfo = rows[i];
         break;
       }
     }
     let result = await bcrypt.compare(req.body.pwd, userInfo.password);
     console.log(result);
-    if (rows.length === 0) {
-      next({ status: 400, message: "Bad Request" });
+    if (!result) {
+      next({ status: 401, message: "Not Valid Entry" });
     } else {
-      res.status(200).send(userInfo.role);
-      // res.send(rows);
+      let status = 200;
+      let data = {
+        role: userInfo.role,
+        accessToken: `geez-${Date.now()}`,
+      };
+      res.status(status).send(data);
     }
     pool.end();
   } catch (error) {

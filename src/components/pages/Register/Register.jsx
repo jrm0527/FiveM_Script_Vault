@@ -5,7 +5,6 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import axios from "../../../api/posts";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
 
@@ -68,14 +67,6 @@ const Register = () => {
         },
         body: JSON.stringify({ email, pwd }),
       });
-      // const response = await axios.post(
-      //   REGISTER_URL,
-      //   JSON.stringify({ email, pwd }),
-      //   {
-      //     headers: { "Content-Type": "application/json" },
-      //   }
-      // );
-      console.log(JSON.stringify(response?.data));
       setSuccess(true);
       setEmail("");
       setPwd("");
@@ -238,7 +229,9 @@ const Register = () => {
             Already registered?
             <br />
             <span className={styles.line}>
-              <Link to="/login">Sign In</Link>
+              <Link className={styles.link} to="/login">
+                Sign In
+              </Link>
             </span>
           </p>
         </section>

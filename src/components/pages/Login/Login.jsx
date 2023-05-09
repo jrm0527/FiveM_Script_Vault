@@ -1,13 +1,8 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
-import AuthContext from "../../../context/AuthProvider";
-// import axios from "../../../api/posts";
-const LOGIN_URL = "http://localhost:8000/api/login";
-
-const Login = () => {
-  const { setAuth } = useContext(AuthContext);
+const Login = ({ setToken, setRole, loggedIn, setLoggedIn }) => {
   const emailRef = useRef();
   const errRef = useRef();
 
@@ -16,9 +11,9 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
-    emailRef.current.focus();
-  }, []);
+  // useEffect(() => {
+  //   emailRef.current.focus();
+  // }, []);
 
   useEffect(() => {
     setErrMsg("");
@@ -28,7 +23,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(LOGIN_URL, {
+      const response = await fetch("http://localhost:8000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,21 +31,15 @@ const Login = () => {
         },
         body: JSON.stringify({ email, pwd }),
       });
-      // const response = await axios.post(
-      //   LOGIN_URL,
-      //   JSON.stringify({ email, pwd }),
-      //   {
-      //     headers: { "Content-Type": "application/json" },
-      //   }
-      // );
-      console.log(JSON.stringify(response?.data));
-      console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ email, pwd, roles, accessToken });
+      const data = await response.json();
+      const accessToken = data?.accessToken;
+      const role = data?.role;
+      setToken(accessToken);
+      setRole(role);
       setEmail("");
       setPwd("");
       setSuccess(true);
+      setLoggedIn(true);
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
@@ -67,7 +56,7 @@ const Login = () => {
 
   return (
     <>
-      {success ? (
+      {loggedIn ? (
         <section className={styles.login}>
           <h1>You are logged in!</h1>
           <br />
@@ -95,7 +84,7 @@ const Login = () => {
               type="text"
               className={styles["input-text"]}
               id="userEmail"
-              ref={emailRef}
+              // ref={emailRef}
               autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -112,7 +101,9 @@ const Login = () => {
               value={pwd}
               required
             />
-            <button type="submit">Sign In</button>
+            <button className={styles.submit} type="submit">
+              Sign In
+            </button>
           </form>
           <p>
             Register for an Account

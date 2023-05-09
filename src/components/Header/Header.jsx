@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ role }) => {
   return (
     <header>
       <nav className={styles.navigationWrapper}>
@@ -26,11 +26,16 @@ const Header = () => {
               Scripts
             </Link>
           </li>
-          <li className={styles.parent}>
-            <Link className={styles.link} to="/admin">
-              Admin
-            </Link>
-          </li>
+          {role === "admin" ? (
+            <li className={styles.parent}>
+              <Link className={styles.link} to="/admin">
+                Admin
+              </Link>
+            </li>
+          ) : (
+            <></>
+          )}
+
           {/* <li className={styles.parent}>
             <Link className={styles.link} to="/about">
               About

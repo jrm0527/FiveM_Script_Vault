@@ -27,7 +27,16 @@ form {
 }
 
 .line {
+  font-size: 24px;
   display: inline-block;
+}
+
+.link {
+  color: white;
+}
+
+.link:hover {
+  color: yellow;
 }
 
 .register {

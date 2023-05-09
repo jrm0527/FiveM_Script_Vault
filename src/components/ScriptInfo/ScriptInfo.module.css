@@ -29,7 +29,8 @@ body {
   max-width: 100%;
   width: 35rem;
   max-height: 100vh;
-  height: 40rem;
+  /* height: 40rem; */
+  height: auto;
   align-items: center;
 }
 
@@ -73,7 +74,8 @@ body {
 }
 
 .script_footer {
-  /* display: flex; */
+  display: flex;
+  flex-direction: row;
   /* justify-content: flex-end; */
   padding-top: 1rem;
   padding-bottom: 1rem;
