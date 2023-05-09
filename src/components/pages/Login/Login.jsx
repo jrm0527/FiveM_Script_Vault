@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
 import AuthContext from "../../../context/AuthProvider";
-import axios from "../../../../server/axios";
-const LOGIN_URL = "/auth";
+// import axios from "../../../api/posts";
+const LOGIN_URL = "http://localhost:8000/api/login";
 
 const Login = () => {
   const { setAuth } = useContext(AuthContext);
-  const userRef = useRef();
+  const emailRef = useRef();
   const errRef = useRef();
 
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ const Login = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    userRef.current.focus();
+    emailRef.current.focus();
   }, []);
 
   useEffect(() => {
@@ -26,28 +26,36 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const response = await fetch(LOGIN_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ email, pwd }),
+      });
+      // const response = await axios.post(
+      //   LOGIN_URL,
+      //   JSON.stringify({ email, pwd }),
+      //   {
+      //     headers: { "Content-Type": "application/json" },
+      //   }
+      // );
       console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
+      console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
-      setAuth({ user, pwd, roles, accessToken });
-      setUser("");
+      setAuth({ email, pwd, roles, accessToken });
+      setEmail("");
       setPwd("");
       setSuccess(true);
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username or Password");
+        setErrMsg("Missing Email or Password");
       } else if (err.response?.status === 401) {
         setErrMsg("Unauthorized");
       } else {
@@ -55,23 +63,6 @@ const Login = () => {
       }
       errRef.current.focus();
     }
-
-    // const userData = {
-    //   email: email,
-    //   password: pwd,
-    // };
-    // console.log(email, pwd);
-    // fetch("http://localhost:8000/api/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    //   body: JSON.stringify(userData),
-    // });
-    // setEmail("");
-    // setPwd("");
-    // setSuccess(true);
   };
 
   return (
@@ -104,7 +95,7 @@ const Login = () => {
               type="text"
               className={styles["input-text"]}
               id="userEmail"
-              ref={userRef}
+              ref={emailRef}
               autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
               value={email}

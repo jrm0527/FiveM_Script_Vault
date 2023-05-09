@@ -23,4 +23,4 @@ INSERT INTO script (name, download_link, image, synopsis, description)
 VALUES ('geez-policebadge', 'https://www.google.com', 'badge', 'Enables LEOs to show their badge to other citizens.',
 'LEO are able to show their police badge complete with headshot from the LEO. Offers a more realistic way to prove the LEO creditionals to citizens.');
 
-INSERT INTO account(id, name, email, password, role) VALUES ('1683307305098', 'admin', 'admin@admin.com', '$2b$10$Y5vsxupJsggGi9dmjsJSB.uYbfeN8unshgShmZ2Mn1V.mMkuDeLnC', 'admin');
+INSERT INTO account(id, email, password, role) VALUES ('1683307305098', 'admin@admin.com', '$2b$10$6XVahTWtnv5znhvtiMX2/OnSLXBJbULWFdKphAVDyfb1uAq23rmhW', 'admin');

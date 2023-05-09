@@ -1,25 +1,26 @@
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {
   faCheck,
   faTimes,
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "../../../../server/axios";
+// import axios from "../../../api/posts";
 import styles from "./Register.module.css";
+import { Link } from "react-router-dom";
 
-const USER_REGEX =
+const EMAIL_REGEX =
   /^[a-z0-9!#$%&'*+=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = "/register";
+const REGISTER_URL = "http://localhost:8000/api/register";
 
 const Register = () => {
-  const userRef = useRef();
+  const emailRef = useRef();
   const errRef = useRef();
 
-  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
   const [validName, setValidName] = useState(false);
-  const [userFocus, setUserFocus] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
 
   const [pwd, setPwd] = useState("");
   const [validPwd, setValidPwd] = useState(false);
@@ -33,12 +34,12 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    userRef.current.focus();
+    emailRef.current.focus();
   }, []);
 
   useEffect(() => {
-    setValidName(USER_REGEX.test(user));
-  }, [user]);
+    setValidName(EMAIL_REGEX.test(email));
+  }, [email]);
 
   useEffect(() => {
     setValidPwd(PWD_REGEX.test(pwd));
@@ -47,39 +48,43 @@ const Register = () => {
 
   useEffect(() => {
     setErrMsg("");
-  }, [user, pwd, matchPwd]);
+  }, [email, pwd, matchPwd]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // if button enabled with JS hack
-    const v1 = USER_REGEX.test(user);
+    const v1 = EMAIL_REGEX.test(email);
     const v2 = PWD_REGEX.test(pwd);
     if (!v1 || !v2) {
       setErrMsg("Invalid Entry");
       return;
     }
     try {
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ user, pwd }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      // TODO: remove console.logs before deployment
+      const response = await fetch(REGISTER_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({ email, pwd }),
+      });
+      // const response = await axios.post(
+      //   REGISTER_URL,
+      //   JSON.stringify({ email, pwd }),
+      //   {
+      //     headers: { "Content-Type": "application/json" },
+      //   }
+      // );
       console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response))
       setSuccess(true);
-      //clear state and controlled inputs
-      setUser("");
+      setEmail("");
       setPwd("");
       setMatchPwd("");
     } catch (err) {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 409) {
-        setErrMsg("Username Taken");
+        setErrMsg("Email In Use");
       } else {
         setErrMsg("Registration Failed");
       }
@@ -93,7 +98,7 @@ const Register = () => {
         <section>
           <h1>Success!</h1>
           <p>
-            <a href="#">Sign In</a>
+            <Link to="/login">Sign In</Link>
           </p>
         </section>
       ) : (
@@ -115,26 +120,26 @@ const Register = () => {
               />
               <FontAwesomeIcon
                 icon={faTimes}
-                className={validName || !user ? styles.hide : styles.invalid}
+                className={validName || !email ? styles.hide : styles.invalid}
               />
             </label>
             <input
               type="text"
               id="email"
-              ref={userRef}
+              ref={emailRef}
               autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               required
               aria-invalid={validName ? "false" : "true"}
               aria-describedby="uidnote"
-              onFocus={() => setUserFocus(true)}
-              onBlur={() => setUserFocus(false)}
+              onFocus={() => setEmailFocus(true)}
+              onBlur={() => setEmailFocus(false)}
             />
             <p
               id="uidnote"
               className={
-                userFocus && user && !validName
+                emailFocus && email && !validName
                   ? styles.instructions
                   : styles.offscreen
               }
@@ -233,8 +238,7 @@ const Register = () => {
             Already registered?
             <br />
             <span className={styles.line}>
-              {/*put router link here*/}
-              <a href="/login">Sign In</a>
+              <Link to="/login">Sign In</Link>
             </span>
           </p>
         </section>
@@ -244,101 +248,3 @@ const Register = () => {
 };
 
 export default Register;
-
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import styles from "./Register.module.css";
-
-// const Register = () => {
-//   const [password, setPassword] = useState("");
-//   const [userName, setUserName] = useState("");
-//   const [userEmail, setUserEmail] = useState("");
-
-//   const recordName = (event) => {
-//     setUserName(event.target.value);
-//   };
-//   const recordPassword = (event) => {
-//     setPassword(event.target.value);
-//   };
-//   const recordEmail = (event) => {
-//     setUserEmail(event.target.value);
-//   };
-
-//   function validateForm() {
-//     return email.length > 0 && password.length > 0;
-//   }
-
-//   function handleSubmit(event) {
-//     event.preventDefault();
-//     if (!validateForm()) return;
-//     const userData = {
-//       name: userName,
-//       email: userEmail,
-//       password: password,
-//     };
-
-//     fetch("http://localhost:8000/api/register", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Access-Control-Allow-Origin": "*",
-//       },
-//       body: JSON.stringify(userData),
-//     });
-//   }
-
-//   return (
-//     <div className="Login">
-//       <h1>Register</h1>
-//       <div>
-//         <label className={styles["user-labels"]} htmlFor="userName">
-//           Name:
-//         </label>
-//       </div>
-//       <div>
-//         <input
-//           type="text"
-//           className={styles["input-text"]}
-//           id="userName"
-//           onChange={recordName}
-//         />
-//       </div>
-//       <div>
-//         <label className={styles["user-labels"]} htmlFor="userEmail">
-//           Email:
-//         </label>
-//       </div>
-//       <div>
-//         <input
-//           type="text"
-//           className={styles["input-text"]}
-//           id="userEmail"
-//           onChange={recordEmail}
-//         />
-//       </div>
-//       <div>
-//         <label className={styles["user-labels"]} htmlFor="userPassword">
-//           Password:
-//         </label>
-//       </div>
-//       <div>
-//         <input
-//           type="text"
-//           className={styles["input-text"]}
-//           id="userPassword"
-//           onChange={recordPassword}
-//         />
-//       </div>
-//       <button type="submit" onClick={handleSubmit}>
-//         Register
-//       </button>
-//       <div className={styles.parent}>
-//         <Link className={styles.link} to="/login">
-//           Login
-//         </Link>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Register;

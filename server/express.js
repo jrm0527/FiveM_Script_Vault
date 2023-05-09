@@ -11,6 +11,8 @@ const { Pool } = pg;
 import cors from "cors";
 app.use(cors());
 
+import bcrypt from "bcrypt";
+
 // Use this if you want to configure specific parameters with CORS
 // app.use(
 //   cors({
@@ -117,6 +119,56 @@ app.delete("/api/scripts/:scriptId", async function (req, res, next) {
     const pool = new Pool({ connectionString: process.env.DATABASE_URL });
     const { rows } = await pool.query(query);
     res.send(rows);
+    pool.end();
+  } catch (error) {
+    next({ status: 400, message: error.message });
+  }
+});
+
+app.post("/api/login", async function (req, res, next) {
+  try {
+    const email = req.body.email;
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    const { rows } = await pool.query(`SELECT * FROM account`);
+    let userInfo = {};
+    for (let i = 0; i < rows.length; i++) {
+      if (rows[i].email === email) {
+        console.log("password found");
+        userInfo = rows[i];
+        break;
+      }
+    }
+    let result = await bcrypt.compare(req.body.pwd, userInfo.password);
+    console.log(result);
+    if (rows.length === 0) {
+      next({ status: 400, message: "Bad Request" });
+    } else {
+      res.status(200).send(userInfo.role);
+      // res.send(rows);
+    }
+    pool.end();
+  } catch (error) {
+    next({ status: 400, message: error.message });
+  }
+});
+
+app.post("/api/register", async function (req, res, next) {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.pwd, 10);
+    const id = Date.now();
+    const email = req.body.email;
+    const role = "user";
+    const query = {
+      text: "INSERT INTO account (id, email, password, role) VALUES ($1, $2, $3, $4) RETURNING *",
+      values: [id, email, hashedPassword, role],
+    };
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    const { rows } = await pool.query(query);
+    if (rows.length === 0) {
+      next({ status: 400, message: "Bad Request" });
+    } else {
+      res.send(rows);
+    }
     pool.end();
   } catch (error) {
     next({ status: 400, message: error.message });

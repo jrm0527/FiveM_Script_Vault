@@ -11,7 +11,6 @@ CREATE TABLE script (
 
 CREATE TABLE account (
     id varchar(25) PRIMARY KEY,
-    name varchar(25) NOT NULL,
     email text NOT NULL,
     password text NOT NULL,
     role varchar(10) NOT NULL
