@@ -48,3 +48,4 @@ npm run dev
 ![alt text](https://github.com/jrm0527/fivem_script_vault/blob/main/Screenshots/Screenshot_3_fivem.png?raw=true)
 ![alt text](https://github.com/jrm0527/fivem_script_vault/blob/main/Screenshots/Screenshot_4_fivem.png?raw=true)
 ![alt text](https://github.com/jrm0527/fivem_script_vault/blob/main/Screenshots/Screenshot_5_fivem.png?raw=true)
+![alt text](https://github.com/jrm0527/fivem_script_vault/blob/main/Screenshots/Screenshot_6_fivem.png?raw=true)
